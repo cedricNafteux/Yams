@@ -2,7 +2,7 @@
 header{
     padding: 5px;
     height: 90px;
-    width: 800px;
+    width: 825px;
     background-color: blue;
     display: flex;
     justify-content: space-between;
@@ -12,7 +12,6 @@ header{
 header div{
     height: 90px;
     width: 90px;
-    background-color: aqua;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -36,11 +35,62 @@ header div{
     font-size: 75px;
 }
 
-/* corps */
-#tabHaut{
-    height: 50px;
-    background-color: blueviolet;
+/* section haute */
+
+    /*titre*/
+#secTitre{
+    padding: 5px;
+     width: 825px;
+    height: 30px;
+    background-color: rgb(20, 197, 220);
 }
+#secTitre span{
+    margin-right: 60px;
+    margin-left: 40px;
+}
+
+    /*tableau haut*/
+#secHaut{
+    padding: 5px;
+    width: 825px;
+    height: 300px;
+    background-color: blueviolet;
+    display: flex;
+    flex-wrap: wrap;
+}
+#colHaut{
+    width: 75px;
+    height: 300px;
+    background-color: rgb(18, 139, 45);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+#tabHaut{
+    width: 750px;
+    height: 300px;
+    background-color: rgb(73, 20, 220);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+#tabHaut button{
+    width: 40px;
+    height: 40px;
+    margin-right: 50px;
+    margin-left: 40px;
+}
+
+
+
+
+
+
+
+
+/* section base */
 #tabBas{
     height: 50px;
     background-color: red;
