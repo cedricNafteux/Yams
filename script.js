@@ -18,7 +18,6 @@ for(var i = 0; i<tabDe.length; i++){
     if(j){
         j.onclick = faceDe;
     }
-
 }
 
 //FONCTIONS
@@ -32,10 +31,11 @@ function lancer(){
             let tmp = Math.random()*(7 - 1) + 1;
             tmp = parseInt(tmp);
             tabDe[i].innerHTML = tmp;
+            tabDe[i].value = tmp;
         }
-
     }
 }
+
 function reinitialiser(){
     for(let i = 0 ; i < tabDe.length ; i ++){
         tabDe[i].innerHTML = '';
@@ -53,3 +53,10 @@ function faceDe() {
         this.style.color = '';
     }
 }
+// function total() {
+//     for(let j = 0 ; j < tabDe.length ; j++ ){
+//         tabDe[j] = parseInt(tabDe[j].value, 10);
+//         scoreTotal = scoreTotal + tabDe[j];
+//     }
+// test.innerHTML = scoreTotal;
+// }
