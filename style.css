@@ -18,7 +18,7 @@ header div{
     justify-content: space-between;
     
 }
-#new{
+#nouveau{
     height:40px;
     color: lightgreen;
     background-color: green;
@@ -33,6 +33,7 @@ header div{
 .de{
     height: 90px;
     width: 90px;
+    font-size: 75px;
 }
 
 /* corps */
