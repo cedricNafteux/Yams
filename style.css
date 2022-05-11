@@ -1,0 +1,52 @@
+/* entete */
+header{
+    padding: 5px;
+    height: 90px;
+    width: 800px;
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+header div{
+    height: 90px;
+    width: 90px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+#new{
+    height:40px;
+    color: lightgreen;
+    background-color: green;
+    border-radius: 10%;
+}
+#lancer{
+    height:40px;
+    color: darkgreen;
+    background-color: green;
+    border-radius: 10%;
+}
+.de{
+    height: 90px;
+    width: 90px;
+}
+
+/* corps */
+#tabHaut{
+    height: 50px;
+    background-color: blueviolet;
+}
+#tabBas{
+    height: 50px;
+    background-color: red;
+}
+
+/* pied de page */
+footer{
+    height: 50px;
+    background-color: brown;
+}
