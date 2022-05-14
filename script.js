@@ -80,18 +80,14 @@ function lancer(){
                 tabDe[i].value = tmp;
             }
         }
-        // if(btnTour.value = 1){
-        //     btnSec.style.backgroundColor = 'green';
-        // }else if(btnTour.value > 1){
-        //     btnSec.style.backgroundColor = 'red';
-        // }else{
-        //     btnSec.style.backgroundColor = 'blue';
-        // }
-
-
-
         btnTour.value ++;
         btnTour.innerHTML = btnTour.value;
+
+        if(btnTour.value == 1){
+            btnSec.style.backgroundColor = 'green';
+        }else{
+            btnSec.style.backgroundColor = 'red';
+        }
     }
 
 
@@ -144,6 +140,9 @@ function tableauHaut() {
        
             break;
         case 'S':
+            if(btnSec.style.backgroundColor == 'green'){
+                remplissageHaut(pos,chiffre);
+            }
 
             break;
         case 'A':
