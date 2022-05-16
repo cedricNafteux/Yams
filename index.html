@@ -9,28 +9,51 @@
         <title>Yams</title>
     </head>
     <body>
+        <nav>
+            <button id="nouveau">nouvelle partie</button>
+            <button>sauvegarder</button>
+            <button>exporter</button>
+        </nav>
+
         <header>
-            <div id="span">
-                <button id="nouveau" class="boutAlpha">New</button>
-                <button id="lancer" class="boutAlpha">Lancer</button>
+            <div>
+                <div >
+                    <label for="">Tour : <button id="tour"></button></label>
+                </div>
+                <!-- <button id="nouveau" class="boutAlpha">New</button> -->
+                <button id="lancer">Lancer</button>
             </div>
             <button id="de1" class="de"></button>
             <button id="de2"class="de"></button>
             <button id="de3"class="de"></button>
             <button id="de4"class="de"></button>
             <button id="de5"class="de"></button>
-            <div id="span">
-                futurs controleurs
-            </div>
         </header>
-        <div id="tabHaut">
 
-        </div>
+        <section id="secTitre">
+                <div id="flecheDescend">&uarr;</div>
+                <div id="flecheMonte">&darr;</div>
+                <div id="libre">L</div>
+                <button id="btnSec">S</button>
+                <button id="btnAnnonce">A</button>
+                <select id="selectAnn">
+                    <option value=""></option>
+                </select>
+        </section>
+        
+        <section id="secHaut">
+            <div id="colHaut"></div>
+            <div id="tabHaut"></div>
+        </section>
+        <section id="secBas">
+
+        </section>
+
         <div id ="tabBas">
 
         </div>
-        <footer>
 
+        <footer>
         </footer>
     </body>
 </html>
