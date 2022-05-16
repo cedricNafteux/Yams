@@ -1,7 +1,7 @@
 //initialisation des variables
 var tabDe = new Array;
 var tabHaut = new Array;
-var tabNomCol = ['','Descente', 'Monté', 'Libre', 'Sec', 'Annonce'];
+var choixValeurAnnonce;
 var tabNomLig = ['1','2','3','4','5','6','full','suite', 'moins','plus','carre','yams'];
 var tabNomTab = ['D1','M1','L1','S1','A1','D2','M2','L2','S2','A2','D3','M3','L3','S3','A3',
                  'D4','M4','L4','S4','A4','D5','M5','L5','S5','A5','D6','M6','L6','S6','A6'];
@@ -18,9 +18,9 @@ btnTour.disabled = true;
 btnTour.value = 0;
 btnTour.innerHTML = btnTour.value;
 
-var btnSec = document.getElementById('sec');
-
-
+var btnSec = document.getElementById('btnSec');
+var btnAnnonce = document.getElementById('btnAnnonce');
+btnAnnonce.onclick = choixAnnonce;
 //création tableau des dés
 for(var i = 1; i<6; i++){
     tabDe.push(document.getElementById('de'+i));
@@ -41,18 +41,13 @@ for(var a = 0; a<tabNomTab.length; a++){
 
 //gestion bouton tabHaut
 for(var a = 0; a<tabHaut.length; a++){
-    //var b = document.getElementById(tabNomTab[a]);
     var b = tabHaut[a];
         b.onclick = tableauHaut;
 }
 
 //FONCTIONS
 function initialisation(){
-    for(let i = 0 ; i < 6 ; i++ ){
-        let a = document.createElement("span");
-        a.textContent = tabNomCol[i];
-        document.getElementById('secTitre').appendChild(a);
-    }
+
     for(let i = 0 ; i < 6 ; i++ ){
         let a = document.createElement("span");
         a.textContent = tabNomLig[i];
@@ -61,9 +56,17 @@ function initialisation(){
     for(let i = 0 ; i < 30 ; i++ ){
         let a = document.createElement("button");
         a.id = tabNomTab[i];
-       // a.textContent = tabNomTab[i];
         document.getElementById('tabHaut').appendChild(a);
     }
+
+    // if(btnAnnonce.style.backgroundColor == 'green'){
+        for(let i=0;i<tabNomLig.length;i++){
+            let b = document.createElement("option");
+            b.id = 'opt'+tabNomLig[i];
+            b.textContent = tabNomLig[i];
+            document.getElementById('selectAnn').appendChild(b);
+        }
+   // }
 }
 
 function nouvellePartie(){
@@ -85,13 +88,31 @@ function lancer(){
 
         if(btnTour.value == 1){
             btnSec.style.backgroundColor = 'green';
+            btnAnnonce.style.backgroundColor = 'green';
         }else{
             btnSec.style.backgroundColor = 'red';
+            btnAnnonce.style.backgroundColor = 'red';
         }
     }
+    if(btnTour.value > 1){
+        document.getElementById('selectAnn').disabled = true;
+    }
+}
 
 
+//selectionner l'annonce
+function choixAnnonce(){
+document.getElementById('selectAnn').disabled = true;
 
+//création du select
+    // if(btnAnnonce.style.backgroundColor == 'green'){
+    //     for(let i=0;i<tabNomLig.length;i++){
+    //         let b = document.createElement("option");
+    //         b.id = 'opt'+tabNomLig[i];
+    //         b.textContent = tabNomLig[i];
+    //         document.getElementById('selectAnn').appendChild(b);
+    //     }
+    // }
 
 
 }
@@ -102,6 +123,8 @@ function reinitialiser(){
         tabDe[i].disabled = false;
         tabDe[i].style.backgroundColor = '';
         tabDe[i].style.color = '';
+        btnTour.value = 0;
+        btnTour.innerHTML = btnTour.value;
     }
 }
 function faceDe() {
@@ -117,16 +140,17 @@ function faceDe() {
 function tableauHaut() {
     var lettre = this.id.substring(0,1);
     var chiffre = this.id.substring(1,2);
-    //let sco = 0;
     let pos;
     chiffre = parseInt(chiffre);
     pos = tabHaut.indexOf(this);
 
+    choixValeurAnnonce = document.getElementById('selectAnn');
 
     switch(lettre){
         case 'D':
             if(chiffre == 1 || tabHaut[pos-5].disabled == true ){
                 remplissageHaut(pos,chiffre)
+                reinitialiser()
                            }
             break;
         case 'M':
@@ -143,9 +167,11 @@ function tableauHaut() {
             if(btnSec.style.backgroundColor == 'green'){
                 remplissageHaut(pos,chiffre);
             }
-
             break;
         case 'A':
+            if(chiffre == choixValeurAnnonce.value){
+                remplissageHaut(pos,chiffre);
+            }
 
             break;
         default:

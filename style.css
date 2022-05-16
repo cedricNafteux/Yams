@@ -1,11 +1,13 @@
 /* entete */
+
 header{
     padding: 5px;
     height: 90px;
-    width: 825px;
+    width: 50%;
     background-color: blue;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 header div{
@@ -37,16 +39,55 @@ header div{
     width: 20px;
     height: 20px;
 }
-#sec{
+
+
+/*section titre*/
+
+#secTitre{
+    background-color: coral;
+    padding: 5px;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 15% 17% 17% 17% 17% 17%;
+}
+#flecheDescend{
+    grid-column: 2;
+    grid-row: 1;
+    text-indent : 10%;
+}
+#flecheMonte{
+    grid-column: 3;
+    grid-row: 1;
+    text-indent : 10%;
+}
+#libre{
+    grid-column: 4;
+    grid-row: 1;
+    text-indent : 10%;
+}
+#btnSec{
+    grid-column: 5;
+    grid-row: 1;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+}
+#btnAnnonce{
+    grid-column: 6;
+    grid-row: 1;
     width: 20px;
     height: 20px;
     border-radius: 50%;
 }
-#annonce{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+#selectAnn{
+    grid-column: 6;
+    grid-row: 2;
 }
+
+
+
+
 
 
 
@@ -54,29 +95,19 @@ header div{
 
 /* section haute */
 
-    /*titre*/
-#secTitre{
-    padding: 5px;
-     width: 825px;
-    height: 30px;
-    background-color: rgb(20, 197, 220);
-}
-#secTitre span{
-    margin-right: 60px;
-    margin-left: 40px;
-}
+
 
     /*tableau haut*/
 #secHaut{
     padding: 5px;
-    width: 825px;
+    width: 50%;
     height: 300px;
     background-color: blueviolet;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 15% 85%;
 }
 #colHaut{
-    width: 75px;
+    grid-column: 1;
     height: 300px;
     background-color: rgb(18, 139, 45);
     display: flex;
@@ -85,19 +116,16 @@ header div{
     align-items: center;
 }
 #tabHaut{
-    width: 750px;
+    grid-column: 2;
     height: 300px;
     background-color: rgb(73, 20, 220);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
 
 }
 #tabHaut button{
     width: 40px;
     height: 40px;
-    margin-right: 50px;
-    margin-left: 40px;
 }
 
 
@@ -107,7 +135,7 @@ header div{
 
 
 
-/* section base */
+/* section bas */
 #tabBas{
     height: 50px;
     background-color: red;
@@ -115,6 +143,28 @@ header div{
 
 /* pied de page */
 footer{
+    width: 360px;
     height: 50px;
     background-color: brown;
+}
+
+/*media queries*/
+@media screen and (min-width: 556px) and (max-width:1100px){
+    header{
+        height: 200px;
+        justify-content: left;
+    }
+}
+@media screen and (max-width: 555px){
+    header{
+        height: 200px;
+        width: 100%;
+        justify-content: left;
+    }
+    #secTitre{
+        width: 100%;
+    }
+    #secHaut{
+        width: 100%;
+    }
 }

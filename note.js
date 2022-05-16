@@ -1,2 +1,5 @@
-// placer la barre des titres en grid
-//implementer methode annonce
+//score dans footer
+// tableau bas
+// fonction aucun coup et coche d'une case
+// fonction yams
+//finalisation nav barre
