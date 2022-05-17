@@ -1,6 +1,9 @@
 //initialisation des variables
 var tabDe = new Array;
 var tabHaut = new Array;
+var tabScore = new Array;
+var score = [0,0,0,0,0];
+
 var choixValeurAnnonce;
 var tabNomLig = ['1','2','3','4','5','6','full','suite', 'moins','plus','carre','yams'];
 var tabNomTab = ['D1','M1','L1','S1','A1','D2','M2','L2','S2','A2','D3','M3','L3','S3','A3',
@@ -16,18 +19,18 @@ btnNouveau.onclick = nouvellePartie;
 var btnTour = document.getElementById('tour');
 btnTour.disabled = true;
 btnTour.value = 0;
-btnTour.innerHTML = btnTour.value;
+btnTour.textContent = btnTour.value;
 
 var btnSec = document.getElementById('btnSec');
 var btnAnnonce = document.getElementById('btnAnnonce');
 btnAnnonce.onclick = choixAnnonce;
+
 //création tableau des dés
 for(var i = 1; i<6; i++){
     tabDe.push(document.getElementById('de'+i));
 }
 
 initialisation();
-
 
 //gestion bouton dés
 for(var i = 0; i<tabDe.length; i++){
@@ -45,6 +48,11 @@ for(var a = 0; a<tabHaut.length; a++){
         b.onclick = tableauHaut;
 }
 
+//création tableau score
+for(var a = 0; a<5; a++){
+    tabScore.push(document.getElementById('scoreInter'+a));
+}
+
 //FONCTIONS
 function initialisation(){
 
@@ -53,20 +61,25 @@ function initialisation(){
         a.textContent = tabNomLig[i];
         document.getElementById('colHaut').appendChild(a);
     }
-    for(let i = 0 ; i < 30 ; i++ ){
-        let a = document.createElement("button");
-        a.id = tabNomTab[i];
-        document.getElementById('tabHaut').appendChild(a);
+    for(let j = 0 ; j < 30 ; j++ ){
+        let b = document.createElement("button");
+        b.id = tabNomTab[j];
+        document.getElementById('tabHaut').appendChild(b);
     }
-
-    // if(btnAnnonce.style.backgroundColor == 'green'){
-        for(let i=0;i<tabNomLig.length;i++){
-            let b = document.createElement("option");
-            b.id = 'opt'+tabNomLig[i];
-            b.textContent = tabNomLig[i];
-            document.getElementById('selectAnn').appendChild(b);
-        }
-   // }
+    for(let k=0;k<tabNomLig.length;k++){
+        let c = document.createElement("option");
+        c.id = 'opt'+tabNomLig[k];
+        c.textContent = tabNomLig[k];
+        document.getElementById('selectAnn').appendChild(c);
+    }
+    for(let l=0;l<5;l++){
+        let d = document.createElement("button");
+        d.id = 'scoreInter'+l;
+        //d.textContent = arr['scoreInter'+l];
+        d.textContent = score[l];
+        //d.disabled = true;
+        document.getElementById('interButton').appendChild(d);
+    }
 }
 
 function nouvellePartie(){
@@ -79,12 +92,12 @@ function lancer(){
             if(tabDe[i].style.backgroundColor == ''){
                 let tmp = Math.random()*(7 - 1) + 1;
                 tmp = parseInt(tmp);
-                tabDe[i].innerHTML = tmp;
+                tabDe[i].textContent = tmp;
                 tabDe[i].value = tmp;
             }
         }
         btnTour.value ++;
-        btnTour.innerHTML = btnTour.value;
+        btnTour.textContent = btnTour.value;
 
         if(btnTour.value == 1){
             btnSec.style.backgroundColor = 'green';
@@ -99,32 +112,21 @@ function lancer(){
     }
 }
 
-
 //selectionner l'annonce
 function choixAnnonce(){
 document.getElementById('selectAnn').disabled = true;
-
-//création du select
-    // if(btnAnnonce.style.backgroundColor == 'green'){
-    //     for(let i=0;i<tabNomLig.length;i++){
-    //         let b = document.createElement("option");
-    //         b.id = 'opt'+tabNomLig[i];
-    //         b.textContent = tabNomLig[i];
-    //         document.getElementById('selectAnn').appendChild(b);
-    //     }
-    // }
 
 
 }
 
 function reinitialiser(){
     for(let i = 0 ; i < tabDe.length ; i ++){
-        tabDe[i].innerHTML = '';
+        tabDe[i].textContent = '';
         tabDe[i].disabled = false;
         tabDe[i].style.backgroundColor = '';
         tabDe[i].style.color = '';
         btnTour.value = 0;
-        btnTour.innerHTML = btnTour.value;
+        btnTour.textContent = btnTour.value;
     }
 }
 function faceDe() {
@@ -183,12 +185,48 @@ function tableauHaut() {
 
 function remplissageHaut(pos,chiffre){
     let sco = 0;
+    let yamsHaut = 0;
     for(let i = 0 ; i < tabDe.length ; i++){
          if(tabDe[i].value == chiffre){
+             yamsHaut += 1
              sco = sco + chiffre;
         }
      }
-        tabHaut[pos].innerHTML = sco;
+        if(yamsHaut == 5){
+            tabHaut[pos].style.backgroundColor = 'green';
+        }else{
+            tabHaut[pos].style.backgroundColor = 'aqua';
+        }
+
+        tabHaut[pos].value = sco;
+        tabHaut[pos].textContent = sco;
         tabHaut[pos].disabled = true;
-        tabHaut[pos].style.backgroundColor = 'aqua';
+        compteScore();
+
+        reinitialiser()
+}
+
+function compteScore(){
+    let tab = new Array;
+    let tab2 = new Array;
+    for(let h = 0;h<tabHaut.length;h++){
+       tab[h] = tabHaut[h].value;
+       if(tab[h]==''){
+        tab[h]=0;
+       }
+       tab[h] = parseInt(tab[h]);
+    }
+
+    tab2[0] = tab[0] + tab[5]+ tab[10]+tab[15] + tab[20]+ tab[25];
+    tab2[1] = tab[1] + tab[6]+ tab[11]+tab[16] + tab[21]+ tab[26];
+    tab2[2] = tab[2] + tab[7]+ tab[12]+tab[17] + tab[22]+ tab[27];
+    tab2[3] = tab[3] + tab[8]+ tab[13]+tab[18] + tab[23]+ tab[28];
+    tab2[4] = tab[4] + tab[9]+ tab[14]+tab[19] + tab[24]+ tab[29];
+    for(let m = 0;m<5;m++){
+        if(tab2[m] >= 63){
+            tabScore[m].textContent = tabScore[m].value = tab2[m]+60;
+        }else{
+            tabScore[m].textContent = tabScore[m].value = tab2[m];
+        }
+    }
 }

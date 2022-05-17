@@ -92,12 +92,7 @@ header div{
 
 
 
-
 /* section haute */
-
-
-
-    /*tableau haut*/
 #secHaut{
     padding: 5px;
     width: 50%;
@@ -130,8 +125,26 @@ header div{
 
 
 
+/* section intermediaire*/
+#secInter{
+    background-color: darkgoldenrod;
+    padding: 5px;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
 
-
+#interButton{
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    height: 30px;
+}
+#interButton button{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
 
 
 
@@ -165,6 +178,9 @@ footer{
         width: 100%;
     }
     #secHaut{
+        width: 100%;
+    }
+    #secInter{
         width: 100%;
     }
 }
