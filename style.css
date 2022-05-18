@@ -1,5 +1,4 @@
-/* entete */
-
+/* ###################################################################  entete */
 header{
     padding: 5px;
     height: 90px;
@@ -46,8 +45,7 @@ header div{
     height: 20px;
 }
 
-
-/*section titre*/
+/* ###################################################################################  section titre*/
 
 #secTitre{
     background-color: coral;
@@ -91,14 +89,7 @@ header div{
     grid-row: 2;
 }
 
-
-
-
-
-
-
-
-/* section haute */
+/* ##################################################################################  section haute */
 #secHaut{
     padding: 5px;
     width: 50%;
@@ -129,9 +120,7 @@ header div{
     height: 40px;
 }
 
-
-
-/* section intermediaire*/
+/* ##############################################################################  section score intermediaire*/
 #secInter{
     background-color: darkgoldenrod;
     padding: 5px;
@@ -153,22 +142,23 @@ header div{
     text-align: center;
 }
 
-
-
-/* section bas */
+/* ################################################################################  section bas */
 #tabBas{
     height: 50px;
     background-color: red;
 }
 
-/* pied de page */
+/* #####################################################################################  pied de page */
 footer{
-    width: 360px;
-    height: 50px;
+    padding: 5px;
+    width: 50%;
+    height: 40px;
     background-color: brown;
+    display: grid;
+    grid-template-columns: 15% 85%;
 }
 
-/*media queries*/
+/* ##########################################################################################  media queries*/
 @media screen and (min-width: 556px) and (max-width:1100px){
     header{
         height: 200px;
@@ -188,6 +178,9 @@ footer{
         width: 100%;
     }
     #secInter{
+        width: 100%;
+    }
+    footer{
         width: 100%;
     }
 }

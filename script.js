@@ -1,8 +1,10 @@
 //initialisation des variables
 var tabDe = new Array;
 var tabHaut = new Array;
-var tabScore = new Array;
-var score = [0,0,0,0,0];
+var tabScoreInter = new Array;
+var tabScoreFinal = new Array;
+var scoreInter = [0,0,0,0,0];
+var scoreFinal = [0,0,0,0,0];
 
 var barrer = false;
 
@@ -52,9 +54,9 @@ for(var a = 0; a<tabHaut.length; a++){
         b.onclick = tableauHaut;
 }
 
-//création tableau score
+//création tableau scoreIntermediaire
 for(var a = 0; a<5; a++){
-    tabScore.push(document.getElementById('scoreInter'+a));
+    tabScoreInter.push(document.getElementById('scoreInter'+a));
 }
 
 //FONCTIONS
@@ -80,7 +82,7 @@ function initialisation(){
         let d = document.createElement("button");
         d.id = 'scoreInter'+l;
         //d.textContent = arr['scoreInter'+l];
-        d.textContent = score[l];
+        d.textContent = scoreInter[l];
         //d.disabled = true;
         document.getElementById('interButton').appendChild(d);
     }
@@ -134,12 +136,14 @@ function reinitialiser(){
     }
 }
 function faceDe() {
-    if(this.style.backgroundColor == ''){
-        this.style.backgroundColor = 'green';
-        this.style.color = 'white';
-    }else{
-        this.style.backgroundColor = '';
-        this.style.color = '';
+    if(btnTour.value > 0){
+        if(this.style.backgroundColor == ''){
+            this.style.backgroundColor = 'green';
+            this.style.color = 'white';
+        }else{
+            this.style.backgroundColor = '';
+            this.style.color = '';
+        }
     }
 }
 
@@ -241,9 +245,9 @@ function compteScore(){
     tab2[4] = tab[4] + tab[9]+ tab[14]+tab[19] + tab[24]+ tab[29];
     for(let m = 0;m<5;m++){
         if(tab2[m] >= 63){
-            tabScore[m].textContent = tabScore[m].value = tab2[m]+60;
+            tabScoreInter[m].textContent = tabScoreInter[m].value = tab2[m]+60;
         }else{
-            tabScore[m].textContent = tabScore[m].value = tab2[m];
+            tabScoreInter[m].textContent = tabScoreInter[m].value = tab2[m];
         }
     }
 }

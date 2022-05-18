@@ -1,8 +1,6 @@
 //score dans footer
 // tableau bas
-// fonction aucun coup et coche d'une case
-// fonction yams => fait en parti
+// fonction yams => fait en parti (reste a ajouter +100pts au score total)
 //finalisation nav barre
 
 //a corriger
-// possibiliter de cliquer sur le de quand pas de valeur
