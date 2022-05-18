@@ -4,6 +4,8 @@ var tabHaut = new Array;
 var tabScore = new Array;
 var score = [0,0,0,0,0];
 
+var barrer = false;
+
 var choixValeurAnnonce;
 var tabNomLig = ['1','2','3','4','5','6','full','suite', 'moins','plus','carre','yams'];
 var tabNomTab = ['D1','M1','L1','S1','A1','D2','M2','L2','S2','A2','D3','M3','L3','S3','A3',
@@ -12,6 +14,8 @@ var tabNomTab = ['D1','M1','L1','S1','A1','D2','M2','L2','S2','A2','D3','M3','L3
 //intit boutons
 var btnLancer = document.getElementById('lancer');
 btnLancer.onclick = lancer;
+var btnBarrer = document.getElementById('barrer');
+btnBarrer.onclick = ftnBarrer;
 
 var btnNouveau = document.getElementById('nouveau');
 btnNouveau.onclick = nouvellePartie;
@@ -150,14 +154,14 @@ function tableauHaut() {
 
     switch(lettre){
         case 'D':
-            if(chiffre == 1 || tabHaut[pos-5].disabled == true ){
+            if(chiffre == 1 || tabHaut[pos-5].disabled == true || barrer == true ){
                 remplissageHaut(pos,chiffre)
                 reinitialiser()
                            }
             break;
         case 'M':
             pos = tabHaut.indexOf(this);
-            if(chiffre == 6 || tabHaut[pos+5].disabled == true ){
+            if(chiffre == 6 || tabHaut[pos+5].disabled == true || barrer == true  ){
             remplissageHaut(pos,chiffre)
                            }
             break;
@@ -166,12 +170,12 @@ function tableauHaut() {
        
             break;
         case 'S':
-            if(btnSec.style.backgroundColor == 'green'){
+            if(btnSec.style.backgroundColor == 'green' || barrer == true ){
                 remplissageHaut(pos,chiffre);
             }
             break;
         case 'A':
-            if(chiffre == choixValeurAnnonce.value){
+            if(chiffre == choixValeurAnnonce.value || barrer == true ){
                 remplissageHaut(pos,chiffre);
             }
 
@@ -186,21 +190,34 @@ function tableauHaut() {
 function remplissageHaut(pos,chiffre){
     let sco = 0;
     let yamsHaut = 0;
-    for(let i = 0 ; i < tabDe.length ; i++){
-         if(tabDe[i].value == chiffre){
-             yamsHaut += 1
-             sco = sco + chiffre;
+
+    if(barrer == true){
+        tabHaut[pos].style.backgroundColor = 'red';
+        ftnBarrer();
+    }else{
+        for(let i = 0 ; i < tabDe.length ; i++){
+            if(tabDe[i].value == chiffre){
+                yamsHaut += 1
+                sco = sco + chiffre;
+           }
         }
-     }
-        if(yamsHaut == 5){
-            tabHaut[pos].style.backgroundColor = 'green';
-        }else{
-            tabHaut[pos].style.backgroundColor = 'aqua';
-        }
+           if(yamsHaut == 5){
+               tabHaut[pos].style.backgroundColor = 'green';
+           }else{
+               tabHaut[pos].style.backgroundColor = 'aqua';
+           }
+    }
+
+
 
         tabHaut[pos].value = sco;
         tabHaut[pos].textContent = sco;
         tabHaut[pos].disabled = true;
+
+
+
+
+
         compteScore();
 
         reinitialiser()
@@ -228,5 +245,15 @@ function compteScore(){
         }else{
             tabScore[m].textContent = tabScore[m].value = tab2[m];
         }
+    }
+}
+
+function ftnBarrer(){
+    if(barrer == false){
+        barrer = true;
+        btnBarrer.style.backgroundColor = 'hotpink';
+    }else{
+        barrer = false;
+        btnBarrer.style.backgroundColor = 'darkred';
     }
 }

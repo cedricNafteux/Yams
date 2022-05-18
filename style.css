@@ -24,10 +24,16 @@ header div{
     background-color: green;
     border-radius: 10%;
 }
+#barrer{
+    height:40px;
+    color: hotpink;
+    background-color: darkred;
+    border-radius: 10%;
+}
 #lancer{
     height:40px;
-    color: darkgreen;
-    background-color: green;
+    color: lightgreen;
+    background-color: darkgreen;
     border-radius: 10%;
 }
 .de{
@@ -130,6 +136,7 @@ header div{
     background-color: darkgoldenrod;
     padding: 5px;
     width: 50%;
+    height: 40px;
     display: grid;
     grid-template-columns: 15% 85%;
 }
