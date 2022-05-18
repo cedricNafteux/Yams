@@ -18,6 +18,9 @@ var btnLancer = document.getElementById('lancer');
 btnLancer.onclick = lancer;
 var btnBarrer = document.getElementById('barrer');
 btnBarrer.onclick = ftnBarrer;
+var btnPtsTotal = document.getElementById('ptsTotal');
+btnPtsTotal.textContent = 0;
+
 
 var btnNouveau = document.getElementById('nouveau');
 btnNouveau.onclick = nouvellePartie;
@@ -58,6 +61,11 @@ for(var a = 0; a<tabHaut.length; a++){
 for(var a = 0; a<5; a++){
     tabScoreInter.push(document.getElementById('scoreInter'+a));
 }
+//création tableau scoreFinaux
+for(var a = 0; a<5; a++){
+    tabScoreFinal.push(document.getElementById('scoreFinal'+a));
+}
+
 
 //FONCTIONS
 function initialisation(){
@@ -81,10 +89,14 @@ function initialisation(){
     for(let l=0;l<5;l++){
         let d = document.createElement("button");
         d.id = 'scoreInter'+l;
-        //d.textContent = arr['scoreInter'+l];
         d.textContent = scoreInter[l];
-        //d.disabled = true;
         document.getElementById('interButton').appendChild(d);
+    }
+    for(let m=0;m<5;m++){
+        let d = document.createElement("button");
+        d.id = 'scoreFinal'+m;
+        d.textContent = scoreFinal[m];
+        document.getElementById('finalScore').appendChild(d);
     }
 }
 
@@ -230,10 +242,15 @@ function remplissageHaut(pos,chiffre){
 function compteScore(){
     let tab = new Array;
     let tab2 = new Array;
+    let yamsTotal = 0;
+    let scoreTmp = 0;
     for(let h = 0;h<tabHaut.length;h++){
        tab[h] = tabHaut[h].value;
        if(tab[h]==''){
         tab[h]=0;
+       }
+       if(tabHaut[h].style.backgroundColor == 'green'){
+           yamsTotal++;
        }
        tab[h] = parseInt(tab[h]);
     }
@@ -243,6 +260,7 @@ function compteScore(){
     tab2[2] = tab[2] + tab[7]+ tab[12]+tab[17] + tab[22]+ tab[27];
     tab2[3] = tab[3] + tab[8]+ tab[13]+tab[18] + tab[23]+ tab[28];
     tab2[4] = tab[4] + tab[9]+ tab[14]+tab[19] + tab[24]+ tab[29];
+
     for(let m = 0;m<5;m++){
         if(tab2[m] >= 63){
             tabScoreInter[m].textContent = tabScoreInter[m].value = tab2[m]+60;
@@ -250,7 +268,26 @@ function compteScore(){
             tabScoreInter[m].textContent = tabScoreInter[m].value = tab2[m];
         }
     }
+
+    for(let n = 0;n<5;n++){
+        tabScoreFinal[n].textContent = tabScoreFinal[n].value = tabScoreInter[n].value;
+        let tmp = parseInt(tabScoreFinal[n].value);
+        scoreTmp = scoreTmp + tmp;
+    }
+    scoreTmp = scoreTmp + (yamsTotal*100);
+
+    btnPtsTotal.textContent = scoreTmp;
+
 }
+
+
+
+
+
+
+
+
+
 
 function ftnBarrer(){
     if(barrer == false){
