@@ -303,7 +303,7 @@ function tableauBas() {
 }
 function remplissageBas(pos,chiffre){
     let sco = 0;
-    let yamsBas = 0;
+    let yamsBas = false;
     let tabDe2 = new Array;
     let valide = false;
 
@@ -320,6 +320,9 @@ function remplissageBas(pos,chiffre){
     tabDe2.sort(function(a, b) {
         return a - b;
     });
+    if(tabDe2[0]==tabDe2[4]){
+        yamsBas = true;
+    }
 
     let totalDe = tabDe2.reduce((sum, current) => sum + current);
 
@@ -375,11 +378,11 @@ function remplissageBas(pos,chiffre){
 
         for(let q2 = 0 ; q2 < tabDe.length ; q2++){
             sco = sco + tabDe2[q2];
-            yamsBas += 1
         }
 
-        if(yamsBas == 5){
+        if(yamsBas == true){
             tabBas[pos].style.backgroundColor = 'green';
+            tabBas[pos].style.color = 'white';
         }else{
             tabBas[pos].style.backgroundColor = 'aqua';
         }
@@ -394,44 +397,16 @@ function remplissageBas(pos,chiffre){
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function compteScore(){
     let tab = new Array;
     let tab2 = new Array;
+    let tabBasGen = new Array;
+    let tabBasScore = new Array;
     let yamsTotal = 0;
     let scoreTmp = 0;
-    for(let r = 0;r<tabHaut.length;r++){
+
+    //score tabHaut par colonne
+   for(let r = 0;r<tabHaut.length;r++){
        tab[r] = tabHaut[r].value;
        if(tab[r]==''){
         tab[r]=0;
@@ -457,11 +432,37 @@ function compteScore(){
         }
     }
 
+
+
+   //score tabBas par colonne
+   for(let r = 0;r<tabBas.length;r++){
+    tabBasGen[r] = tabBas[r].value;
+    if(tabBasGen[r]==''){
+        tabBasGen[r]=0;
+    }
+    if(tabBas[r].style.backgroundColor == 'green'){
+        yamsTotal++;
+    }
+    tabBasGen[r] = parseInt(tabBasGen[r]);
+ }
+
+ tabBasScore[0] = tabBasGen[0] + tabBasGen[5]+ tabBasGen[10]+tabBasGen[15] + tabBasGen[20]+ tabBasGen[25];
+ tabBasScore[1] = tabBasGen[1] + tabBasGen[6]+ tabBasGen[11]+tabBasGen[16] + tabBasGen[21]+ tabBasGen[26];
+ tabBasScore[2] = tabBasGen[2] + tabBasGen[7]+ tabBasGen[12]+tabBasGen[17] + tabBasGen[22]+ tabBasGen[27];
+ tabBasScore[3] = tabBasGen[3] + tabBasGen[8]+ tabBasGen[13]+tabBasGen[18] + tabBasGen[23]+ tabBasGen[28];
+ tabBasScore[4] = tabBasGen[4] + tabBasGen[9]+ tabBasGen[14]+tabBasGen[19] + tabBasGen[24]+ tabBasGen[29];
+
+
+
+
+// score par colonne
     for(let t1 = 0 ; t1 < 5 ; t1++) {
 
         let tmp1 = 0;
         tmp1 = parseInt(tabScoreInter[t1].value);
+        tmp1 = tmp1 + tabBasScore[t1];
         tabScoreFinal[t1].textContent = tabScoreFinal[t1].value = tmp1;
+
         let tmp2 = parseInt(tabScoreFinal[t1].value);
         scoreTmp = scoreTmp + tmp2;
     }
